@@ -1,0 +1,49 @@
+---
+name: Molecule
+
+on:
+  push:
+    branches:
+      - '*'
+  pull_request:
+  schedule:
+    - cron: '0 0 * * 0'
+
+jobs:
+  molecule:
+    name: Test on ${{ matrix.distro }}
+    runs-on: ubuntu-20.04
+    defaults:
+      run:
+        working-directory: bonddim.lxd
+    strategy:
+      matrix:
+        distro:
+          - ubuntu/18.04
+          - ubuntu/16.04
+          - centos/8
+          - centos/7
+
+    steps:
+      - name: Checks-out repository
+        uses: actions/checkout@v2
+        with:
+          path: bonddim.lxd
+
+      - name: LXD init
+        uses: bonddim/action-lxd@v1
+
+      - name: Install dependencies
+        run: |
+          sudo python3 -m pip install ansible-lint yamllint git+https://github.com/bonddim/molecule-lxd.git
+          ansible-galaxy role install bonddim.snapd
+
+      - name: Get latest yamllint config
+        run: curl -sSo .yamllint https://raw.githubusercontent.com/ansible/galaxy/master/galaxy/importer/linters/yamllint.yaml
+
+      - name: Run Molecule tests
+        run: molecule test
+        env:
+          MOLECULE_DISTRO: ${{ matrix.distro }}
+          PY_COLORS: '1'
+          ANSIBLE_FORCE_COLOR: true
