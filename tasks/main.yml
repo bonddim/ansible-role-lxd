@@ -1,0 +1,25 @@
+---
+# tasks file for lxd role
+- name: Check if legacy socket path exists
+  stat:
+    path: /var/lib/lxd/unix.socket
+  register: legacy_socket
+  tags: lxd, lxd-migrate
+
+- name: Run migration tasks
+  include_tasks: migrate.yml
+  when:
+    - ansible_distribution == "Ubuntu"
+    - legacy_socket.stat.exists|bool
+  tags: lxd, lxd-migrate
+
+- import_tasks: init.yml
+  tags: lxd, lxd-init
+
+- name: Add users to lxd group
+  user:
+    name: "{{ item }}"
+    groups: lxd
+    append: true
+  loop: "{{ lxd_users }}"
+  tags: lxd, lxd-users

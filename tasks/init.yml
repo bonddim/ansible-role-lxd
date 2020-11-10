@@ -1,0 +1,28 @@
+---
+- name: Start lxd daemon
+  service:
+    name: snap.lxd.daemon
+    state: started
+
+- name: Check if lxcfs symlink exists
+  stat:
+    path: /var/snap/lxd/common/var/lib/lxcfs
+  register: lxcfs_link
+
+
+- when: lxcfs_link.stat.islnk|default(false)
+  block:
+    - name: Remove lxcfs symlink
+      file:
+        path: "{{ lxcfs_link.stat.path }}"
+        state: absent
+
+    - name: Restart lxd daemon
+      service:
+        name: snap.lxd.daemon
+        state: started
+
+- name: Initialize lxd in auto mode
+  command: /snap/bin/lxd init --auto
+  args:
+    creates: /var/snap/lxd/common/lxd/storage-pools/default

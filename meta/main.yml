@@ -1,0 +1,32 @@
+---
+galaxy_info:
+  author: Dmytro Bondar
+  license: license (MIT)
+  role_name: lxd
+  description: Install LXD daemon from Snapcraft. Migrate legacy LXD on Ubuntu
+  github_branch: main
+
+  min_ansible_version: 2.8
+
+  platforms:
+    - name: Ubuntu
+      versions:
+        - bionic
+        - xenial
+    - name: Debian
+      versions:
+        - bullseye
+        - buster
+    - name: EL
+      versions:
+        - 8
+        - 7
+
+  galaxy_tags:
+    - lxd
+    - virtualization
+
+dependencies:
+  - role: bonddim.snapd
+    snap_packages:
+      - lxd
