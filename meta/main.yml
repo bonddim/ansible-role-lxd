@@ -15,8 +15,8 @@ galaxy_info:
         - xenial
     - name: Debian
       versions:
-        - bullseye
         - buster
+        - stretch
     - name: EL
       versions:
         - 8
