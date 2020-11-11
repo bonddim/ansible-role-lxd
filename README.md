@@ -3,7 +3,7 @@
 [![Ansible Role](https://img.shields.io/ansible/role/51734?label=galaxy&logo=ansible)](https://galaxy.ansible.com/bonddim/lxd)
 [![Ansible Role Downloads](https://img.shields.io/ansible/role/d/51734?logo=ansible)](https://galaxy.ansible.com/bonddim/lxd)
 [![Ansible Quality Score](https://img.shields.io/ansible/quality/51734?logo=ansible)](https://galaxy.ansible.com/bonddim/lxd)
-[![Workflow](https://img.shields.io/github/workflow/status/bonddim/ansible-role-lxd/Molecule?logo=github)](https://github.com/bonddim/ansible-lxd/actions)
+[![Workflow](https://img.shields.io/github/workflow/status/bonddim/ansible-role-lxd/Molecule?logo=github)](https://github.com/bonddim/ansible-role-lxd/actions)
 [![License](https://img.shields.io/github/license/bonddim/ansible-role-lxd)](https://github.com/bonddim/ansible-role-lxd/blob/main/LICENSE)
 
 ## Features
@@ -12,6 +12,7 @@
 
 ## Supported platforms
 * Ubuntu
+* Debian
 * Centos
 
 Check list of tested environments in [workflow](https://github.com/bonddim/ansible-role-lxd/blob/main/.github/workflows/molecule.yaml) file
