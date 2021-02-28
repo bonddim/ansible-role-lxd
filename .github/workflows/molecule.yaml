@@ -22,7 +22,6 @@ jobs:
         distro:
           - ubuntu/20.04
           - ubuntu/18.04
-          - ubuntu/16.04
           - fedora/33
           - fedora/32
           - centos/8
