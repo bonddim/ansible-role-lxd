@@ -12,8 +12,9 @@
 
 ## Supported platforms
 * Ubuntu
-* Debian
+* Debian (may require restart)
 * Centos
+* Fedora
 
 Check list of tested environments in [workflow](https://github.com/bonddim/ansible-role-lxd/blob/main/.github/workflows/molecule.yaml) file
 
