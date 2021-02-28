@@ -1,5 +1,5 @@
 ---
-# tasks file for lxd role
+# tasks file for bonddim.lxd role
 - name: Check if legacy socket path exists
   stat:
     path: /var/lib/lxd/unix.socket
@@ -13,7 +13,16 @@
     - legacy_socket.stat.exists|bool
   tags: lxd, lxd-migrate
 
-- import_tasks: init.yml
+- name: Start lxd daemon
+  service:
+    name: snap.lxd.daemon
+    state: started
+  tags: lxd, lxd-init
+
+- name: Initialize lxd in auto mode
+  command: /snap/bin/lxd init --auto
+  args:
+    creates: /var/snap/lxd/common/lxd/storage-pools/default
   tags: lxd, lxd-init
 
 - name: Add users to lxd group

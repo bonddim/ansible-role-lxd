@@ -11,8 +11,7 @@ galaxy_info:
   platforms:
     - name: Ubuntu
       versions:
-        - bionic
-        - xenial
+        - all
     - name: Debian
       versions:
         - buster
@@ -21,6 +20,9 @@ galaxy_info:
       versions:
         - 8
         - 7
+    - name: Fedora
+      versions:
+        - all
 
   galaxy_tags:
     - lxd

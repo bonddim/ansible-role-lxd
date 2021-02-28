@@ -17,10 +17,13 @@ jobs:
       run:
         working-directory: bonddim.lxd
     strategy:
+      fail-fast: false
       matrix:
         distro:
+          - ubuntu/20.04
           - ubuntu/18.04
-          - ubuntu/16.04
+          - fedora/33
+          - fedora/32
           - centos/8
           - centos/7
 
@@ -37,9 +40,6 @@ jobs:
         run: |
           sudo python3 -m pip install ansible-lint yamllint git+https://github.com/bonddim/molecule-lxd.git
           ansible-galaxy role install bonddim.snapd
-
-      - name: Get latest yamllint config
-        run: curl -sSo .yamllint https://raw.githubusercontent.com/ansible/galaxy/master/galaxy/importer/linters/yamllint.yaml
 
       - name: Run Molecule tests
         run: molecule test
