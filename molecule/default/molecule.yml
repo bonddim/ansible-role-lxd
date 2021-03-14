@@ -1,6 +1,7 @@
 ---
 dependency:
-  name: galaxy
+  name: shell
+  command: ansible-galaxy role install bonddim.snapd
 driver:
   name: lxd
 lint: |
