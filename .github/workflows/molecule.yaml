@@ -28,21 +28,13 @@ jobs:
           - centos/7
 
     steps:
-      - name: Checks-out repository
-        uses: actions/checkout@v2
+      - uses: actions/checkout@v2
         with:
           path: bonddim.lxd
-
-      - name: LXD init
-        uses: bonddim/action-lxd@v1
-
+      - uses: bonddim/action-lxd-init@stable
       - name: Install dependencies
-        run: |
-          sudo python3 -m pip install 'ansible-lint==5.0.1' yamllint molecule-lxd
-          ansible-galaxy role install bonddim.snapd
-
-      - name: Run Molecule tests
-        run: molecule test
+        run: sudo python3 -m pip install --no-cache-dir --requirement .github/workflows/requirements.txt
+      - run: molecule test
         env:
           MOLECULE_DISTRO: ${{ matrix.distro }}
           PY_COLORS: '1'
