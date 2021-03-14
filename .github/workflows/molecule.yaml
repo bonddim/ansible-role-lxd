@@ -11,6 +11,8 @@ on:
 
 jobs:
   molecule:
+    # skip job on pull requests from base repository
+    if: github.event.pull_request.head.repo.full_name != github.repository
     name: Test on ${{ matrix.distro }}
     runs-on: ubuntu-20.04
     defaults:
