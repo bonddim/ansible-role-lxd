@@ -1,3 +1,7 @@
+# DEPRECATED
+
+This role is no longer supported, please consider using [bonddim.linux](https://galaxy.ansible.com/bonddim/linux) collection instead
+
 # Ansible Role: lxd
 
 [![Ansible Role](https://img.shields.io/ansible/role/51734?label=galaxy&logo=ansible)](https://galaxy.ansible.com/bonddim/lxd)
